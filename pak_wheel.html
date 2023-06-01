@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Pak-wheel</title>
+</head>
+<style>
+  .pak {
+
+    background-image: linear-gradient(blue, aqua);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg {
+    background-color: darkviolet;
+  }
+</style>
+
+<body onload="listvehicle(vehicles)">
+  <div class="container">
+    <div class="bg">
+      <h1 class="text-center pak">PAK WHEEL CRUD</h1>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-3">
+            <div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Post add
+              </button>
+              <!-- Modal -->
+              <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Post Adds</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">PROVINCES</div>
+                          <select id="provinces" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select </option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Sindh">Sindh</option>
+                            <option value="kpk">kpk</option>
+                            <option value="Blochistan">Blochistan</option>
+                            <!-- <option value="Azad kashmire">Azad kashmire</option> -->
+                            <!-- <option value="Faderal">Faderal</option> -->
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">CITY</div>
+                          <select id="city" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select </option>
+                            <option value="Lahore">Lahore</option>
+                            <option value="Pattoki">Pattoki</option>
+                            <option value="Okara">Okara</option>
+                            <option value="Islamabad">Islamabad</option>
+                            <option value="Kirachi">Kirachi</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">MAKE</div>
+                          <select id="make" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select </option>
+                            <option value="Honda">Honda</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Audi">Audi</option>
+                            <option value="Hyundai">Hyundai</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for=""> Car Name</label>
+                            <input id="name" type="text" class="w-100 p-1" placeholder="eg-Civic">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">COLOR</div>
+                          <select id="color" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select</option>
+                            <option value="White">White</option>
+                            <option value="Black">Black</option>
+                            <option value="Red">Red</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Aqua Green">Aqua Green</option>
+                            <option value="Blue">Blue</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for=""> PRICE (PKR)</label>
+                            <input id="price" type="number" class="w-100 p-1" placeholder="SET A PRICE">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">Upload Images</label>
+                            <input id="img" type="file" class="w-100 border mb-3" placeholder="img">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">Model</label>
+                            <input id="model" type="text" class="w-100 border mb-3" placeholder="img">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">Engine CC</label>
+                            <input id="cc" type="text" class="w-100 border mb-3" placeholder="img">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">
+                            <label for="">KMs Driving</label>
+                            <input id="kilometer" type="text" class="w-100 border mb-3" placeholder="img">
+                          </div>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">Engine type</div>
+                          <select id="enginetype" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select</option>
+                            <option value="petrol">petrol</option>
+                            <option value="diesel">Diesel</option>
+                          </select>
+                        </div>
+                        <div class="col-4 mt-3">
+                          <div class="fw-bold">transmition</div>
+                          <select id="transmition" class="form-select" aria-label="Default select example">
+                            <option disabled selected> select</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Close
+                        </button>
+                        <button onclick="save()" type="button" class="btn btn-primary">
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- popup end -->
+              <div class="bg-primary mt-3">
+                <div class=" h2">Show Result By:</div>
+              </div>
+            </div>
+            <div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#search" aria-expanded="true" aria-controls="collapseOne">
+                      SEARCH ITEM
+                    </button>
+                  </h2>
+                  <div id="search" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="input-group mb-3">
+                        <input id="txt-filter" type="text" class="form-control" placeholder="item search" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn bg-secondary" type="button" id="button-addon2" onclick="filter()">Go</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#provinces" aria-expanded="true" aria-controls="collapseOne">
+                      PROVINCES
+                    </button>
+                  </h2>
+                  <div id="provinces" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="punjab" id="chk-province-punjab" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          PUNJAB
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="sindh" id="chk-province-sindh" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Sindh
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="kpk" id="chk-province-kpk" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          kpk
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="balochistan" id="chk-province-balochistan" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Balochistan
+                        </label>
+                      </div>
+                      <!-- <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="azadkashmir" id="chk-province-azadkashmir" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Azad Kashmir
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="fedral" id="chk-province-fedral" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          faderal
+                        </label>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#city" aria-expanded="true" aria-controls="collapseOne">
+                      CITY
+                    </button>
+                  </h2>
+                  <div id="city" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Lahore" id="chk-city-Lahore" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Lahore
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Pattoki" id="chk-city-Pattoki" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Pattoki
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Okara" id="chk-city-Okara" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Okara
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Islamabad" id="chk-city-Islamabad" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Islamabad
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Karachi" id="chk-city-Karachi" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Karachi
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#make" aria-expanded="true" aria-controls="collapseOne">
+                      Make
+                    </button>
+                  </h2>
+                  <div id="make" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Honda" id="chk-make-Honda" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Honda
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Toyota" id="chk-make-Toyota" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Toyota
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Suzuki" id="chk-make-Suzuki" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Suzuki
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="BMW" id="chk-make-BMW" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          BMW
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Audi" id="chk-make-Audi" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Audi
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Hyundai" id="chk-make-Hyundai" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Hyundai
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#color" aria-expanded="true" aria-controls="collapseOne">
+                      Color
+                    </button>
+                  </h2>
+                  <div id="color" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="White" id="chk-color-White" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          White
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Black" id="chk-color-Black" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Black
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Silver" id="chk-color-Silver" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Silver
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="AquaGreen" id="chk-color-AquaGreen" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Aqua Green
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Red" id="chk-color-Red" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Red
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Blue" id="chk-color-Blue" onchange="filter()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Blue
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Price Range
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="input-group mb-3">
+                        <input id="txt-price-from"  type="text" class="form-control" placeholder="from" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input id="txt-price-to" type="text" class="form-control" placeholder="to" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn bg-secondary" type="button" id="button-addon2" onclick="filter()">Go</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 mt-4">
+            <div id="vehicles"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  let vehicles = [
+    {
+      img:'data:image/jpeg;base64,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',
+      provinces:'sindh',
+      city:'Karachi',
+      make: 'Honda',
+      name:'Accord',
+      color:'White',
+      price:'8000000',
+      model:'2023',
+      enginecc:'1500cc',
+      kilometer:'1000',
+      enginetype:'petrol',
+      transmition:'automatic',
+    },
+    {
+      img:'data:image/jpeg;base64,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',
+      city:'Lahore',
+      make: 'Honda',
+      name:'civic',
+      color:'Silver',
+      price:'4500000',
+      model:'2020',
+      enginecc:'1500cc',
+      kilometer:'1000',
+      enginetype:'petrol',
+      transmition:'automatic',
+      provinces:'punjab',
+    }
+  ];
+  function filter(){
+    let filter = $('txt-filter').value;
+    let filtered = vehicles.filter(function(item){
+      return item.name.toLowerCase().includes(filter.toLowerCase())
+    })
+    filtered =getFilteredForPrice(filtered);
+    filtered =getFilteredForProvince(filtered);
+    filtered =getFilteredForCity(filtered);
+    filtered =getFilteredForMake(filtered);
+    filtered =getFilteredForColor(filtered);
+    listvehicle(filtered);
+  }
+  function getFilteredForPrice(items){
+    let from = $('txt-price-from').value;
+    let to = $('txt-price-to').value;
+    let filtered = items;
+    if(from !=''){
+      filtered = filtered.filter((item) => {
+        return parseInt(item.price) >= parseInt(from)
+      })
+    }
+
+    if(to!=''){
+      filtered = filtered.filter((item) => {
+        return parseInt(item.price) <= parseInt(to)
+      })
+    }
+    return filtered;
+  }
+  function getFilteredForProvince(items){
+    let provinces = ['punjab','sindh','kpk','balochistan'];
+    let allowed =[];
+    for (province of provinces) {
+      if($('chk-province-' + province).checked) {
+        allowed.push($('chk-province-' + province).value)
+      }
+    }
+    if(allowed.length == 0){
+      return items;
+    }
+    return items.filter((item)=>{
+      return allowed.includes(item.provinces)
+    })
+  }
+
+  function getFilteredForCity(items){
+    let cities = ['Lahore','Pattoki','Okara','Karachi','Islamabad']
+    let allowed =[];
+    for(city of cities){
+      if($('chk-city-'+ city) && $('chk-city-'+ city).checked){
+        allowed.push($('chk-city-'+ city).value)
+      }
+    }
+    if(allowed.length == 0){
+      return items;
+    }
+    return items.filter((item) => {
+      return allowed.includes(item.city)
+    })
+  }
+  function getFilteredForMake(items){
+    let companies =['Honda','Toyota','Suzuki','BMW','Audi','Hyundai'];
+    let allowed = [];
+    for(make of companies){
+      if($('chk-make-'+ make) && $('chk-make-'+ make).checked){
+        allowed.push($('chk-make-'+ make).value)
+      }
+    }
+    if(allowed.length == 0){
+      return items;
+    }
+    return items.filter((item) => {
+      return allowed.includes(item.make)
+    })
+  }
+  function getFilteredForColor(items){
+    let colors =['White','Black','Silver','Aqua Green','Red','Blue']
+    let allowed = [];
+    for(color of colors){
+      if($('chk-color-'+ color) && $('chk-color-'+ color).checked){
+        allowed .push($('chk-color-'+ color).value)
+      }
+    } 
+    if(allowed.length == 0){
+      return items;
+    }
+    return items.filter((item)=> {
+      return allowed.includes(item.color)
+    } )
+  }
+  let id = null; 
+  function save() {
+    let obj = {
+      image: $('img').files[0],
+      provinces:$('provinces').value,
+      city:$('city').value,
+      make: $('make').value,
+      name:$('name').value,
+      color:$('color').value,
+      price:$('price').value,
+      model:$('model').value,
+      enginecc:$('cc').value,
+      kilometer:$('kilometer').value,
+      enginetype:$('enginetype').value,
+      transmition:$('transmition').value,
+    }
+    let reader = new FileReader();
+    reader.onload = function () {
+      obj.img = reader.result;
+    }
+    reader.readAsDataURL(obj.image);
+    setTimeout(function () {
+      if (id==null) {
+        vehicles.push(obj)
+      }
+      else {
+        vehicles[id] = obj
+      } listvehicle(vehicles);
+      }, 20)
+      // clearform();
+  }
+  function listvehicle(items){
+    let output ="";
+    for(index in items){
+      output +="\
+                <div class='row bg-light my-4'>\
+                  <div class='col-md-3 '><img class='img-fluid py-2' hight:140px width:140px src='"+items[index].img+"' alt=''></div>\
+                  <div class='col-md-9'>\
+                    <div class='row'>\
+                      <div class='h3 col-8 text-primary'>"+ items[index].name +"</div>\
+                      <div class='col-4 text-end h3 text-primary'>"+ items[index].price + 'PKR'+"</div>\
+                    </div>\
+                    <div>"+ items[index].city +"</div>\
+                    <div class='d-flex mt-2'>\
+                      <div>"+ items[index].model +' '+'|'+"</div>\
+                      <div class='ps-2'>"+ items[index].kilometer +'km'+' '+'|'+"</div>\
+                      <div class='ps-2'>"+ items[index].enginetype +' '+'|'+"</div>\
+                      <div class='ps-2'>"+ items[index].enginecc +' '+'|'+"</div>\
+                      <div class='ps-2'>"+ items[index].make +' '+'|'+"</div>\
+                      <div class='ps-2'>"+ items[index].color +' '+'|'+"</div>\
+                      <div class='ps-2'>"+ items[index].transmition +' '+'|'+"</div>\
+                    </div>\
+                  </div>\
+                </div>\ ";
+    }
+    $('vehicles').innerHTML=output;
+  }
+
+  function clearform(){
+            id = null;
+            $('img').value="";
+            $('provinces').value="";
+            $('make').value="";
+            $('city').value="";
+            $('color').value="";
+            $('name').value="";
+            $('price').value="";
+        }
+
+  function $(id) {
+    return document.getElementById(id);
+  }
+</script>
+
+</html>
